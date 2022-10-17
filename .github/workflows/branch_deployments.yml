@@ -89,9 +89,9 @@ jobs:
         if: ${{ github.event.pull_request.state != 'closed' }}
         uses: docker/build-push-action@v3
         with:
-          context: ${{ inputs.location.directory }}
+          context: ${{ matrix.location.directory }}
           push: true
-          tags: "${{ inputs.location.registry }}:${{ github.sha }}"
+          tags: "${{ matrix.location.registry }}:${{ github.sha }}"
           labels: |
             branch=${{ github.head_ref }}
           cache-from: type=gha
@@ -105,7 +105,7 @@ jobs:
           organization_id: ${{ secrets.ORGANIZATION_ID }}
           pr: "${{ github.event.number }}"
           pr_status: "${{ github.event.pull_request.merged && 'merged' || github.event.pull_request.state }}"
-          location: ${{ toJson(inputs.location) }}
+          location: ${{ toJson(matrix.location) }}
           image_tag: ${{ github.sha }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

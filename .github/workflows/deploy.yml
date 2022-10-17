@@ -83,9 +83,9 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: ${{ inputs.location.directory }}
+          context: ${{ matrix.location.directory }}
           push: true
-          tags: "${{ inputs.location.registry }}:${{ github.sha }}"
+          tags: "${{ matrix.location.registry }}:${{ github.sha }}"
           labels: |
             branch=${{ github.head_ref }}
           cache-from: type=gha
@@ -98,7 +98,7 @@ jobs:
           dagster_cloud_api_token: ${{ secrets.DAGSTER_CLOUD_API_TOKEN }}
           organization_id: ${{ secrets.ORGANIZATION_ID }}
           deployment: prod
-          location: ${{ toJson(inputs.location) }}
+          location: ${{ toJson(matrix.location) }}
           image_tag: ${{ github.sha }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
