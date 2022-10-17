@@ -1,6 +1,8 @@
-# Dagster Cloud Hybrid Deployment Quickstart
+# Dagster Cloud Hybrid Custom Build Process Quickstart
 
-This template lets you get started using Dagster Cloud with a Hybrid agent.
+This is a more advanced variant of the [Hybrid Quickstart Template](https://github.com/dagster-io/dagster-cloud-hybrid-quickstart) for Dagster Cloud.
+
+It contains more verbose [workflow files](./.github/workflows), suitable for custom build processes such as a complex Docker image build or solely updating Dagster Cloud using an image built elsewhere.
 
 ## Create a new repository from this template
 
